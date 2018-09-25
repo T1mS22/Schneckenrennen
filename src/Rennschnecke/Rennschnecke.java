@@ -13,7 +13,7 @@ public class Rennschnecke
 		this.setBreed(breed);
 		this.setMaxvelocity(maxvelocity);
 	}
-
+  
 	public void krieche() {
 		this.distance += Math.random() * this.maxvelocity;
 	}
