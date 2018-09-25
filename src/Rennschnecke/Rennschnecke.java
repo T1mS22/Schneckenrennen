@@ -2,31 +2,26 @@ package Rennschnecke;
 
 public class Rennschnecke 
 {
-	private String name        = "";
-	private String breed       = "";
+	private String name = "";
+	private String breed = "";
 	private double maxvelocity = 0;
-	private double distance    = 0;
-	
-	public Rennschnecke (String name, String breed, double maxvelocity)
+	private double distance = 0;
+
+	public Rennschnecke(String name, String breed, double maxvelocity) 
 	{
 		this.setName(name);
 		this.setBreed(breed);
 		this.setMaxvelocity(maxvelocity);
-	
 	}
-	
-	public void krieche()
-	{
-		this.distance+= Math.random()*this.maxvelocity;
+
+	public void krieche() {
+		this.distance += Math.random() * this.maxvelocity;
 	}
-	
-	
 
 	@Override
 	public String toString() {
-		return "Rennschnecke Name = " + name + ", Rasse = " + breed + ""
-				+ ", Maximalgeschwindigkeit = " + maxvelocity + ", Zurückgelegter Weg = "
-				+ distance + "";
+		return "Rennschnecke Name = " + name + ", Rasse = " + breed + "" + ", Maximalgeschwindigkeit = " + maxvelocity
+				+ ", Zurückgelegter Weg = " + distance + "";
 	}
 
 	public String getName() {
@@ -60,6 +55,5 @@ public class Rennschnecke
 	public void setDistance(double distance) {
 		this.distance = distance;
 	}
-	
-	
+
 }
