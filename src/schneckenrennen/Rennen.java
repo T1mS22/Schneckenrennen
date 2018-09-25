@@ -1,5 +1,9 @@
 package schneckenrennen;
 
+import Rennschnecke.Rennschnecke;
+import java.util.ArrayList;
+
+
 public class Rennen {
 	private String rennenName = "";
 	private int anzahlSchnecken = 0;
@@ -17,16 +21,16 @@ public class Rennen {
 	}
 	
 	public void removeRennschnecke(String name) {
-		/*for (Rennschnecke item: teilnehmendeSchnecken) {
-			if (item.equals(name)) {
+		for (Rennschnecke item: teilnehmendeSchnecken) {
+			if (item.getName().equals(name)) {
 				this.teilnehmendeSchnecken.remove(item);
 				this.anzahlSchnecken -= 1;
 			}
-		}*/
-		if (this.teilnehmendeSchnecken.contains(name) == true) {
+		}
+		/*if (this.teilnehmendeSchnecken.contains(name) == true) {
 			this.teilnehmendeSchnecken.remove(name);
 			this.anzahlSchnecken -= 1;
-		}
+		}*/
 	}
 	
 	public String toString() {
@@ -48,10 +52,12 @@ public class Rennen {
 	
 	private void lassSchneckeKriechen() {
 		for (Rennschnecke item: teilnehmendeSchnecken) {
-			item.kriechen();
+			item.krieche();
 		}
 	}
 	public void durchfuehren() {
-		
+		if (ermittleGewinner() == null) {
+			lassSchneckeKriechen();
+		}
 	}
 }
