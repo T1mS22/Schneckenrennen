@@ -43,7 +43,7 @@ public class Rennen {
 	public Rennschnecke ermittleGewinner() {
 		Rennschnecke siegerSchnecke = null;
 		for (Rennschnecke item: teilnehmendeSchnecken) {
-			if (item.getDistance() == this.laengeStrecke) {
+			if (item.getDistance() >= this.laengeStrecke) {
 				siegerSchnecke = item;
 			}
 		}
@@ -56,7 +56,7 @@ public class Rennen {
 		}
 	}
 	public void durchfuehren() {
-		if (ermittleGewinner() == null) {
+		while (ermittleGewinner() == null) {
 			lassSchneckeKriechen();
 		}
 	}
