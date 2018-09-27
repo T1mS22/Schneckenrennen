@@ -43,20 +43,21 @@ public class Wettbuero {
 	public void wetteAnnehmen() {
 		Scanner scn = new Scanner(System.in);
 		System.out.println("Möchten sie Wetten?");
-		System.out.print("Wann ja geben sie bitte true ein und wenn Nein geben sie bitte false ein: ");
-		Boolean Anfrage = scn.hasNextLine();
-		while(Anfrage) {		
-			System.out.print("Bitte gebe deinen Spieler Namen ein: ");
-			String spieler = scn.nextLine();
-			System.out.print("Gebe ein auf welche Schnecke du setzten möchtest: ");
-			String schneckenName = scn.nextLine();
-			System.out.print("Gebe nun deinen Wetteinsatz ein: ");
+		System.out.println("Wenn Ja, geben sie bitte 'true' ein und wenn Nein, geben sie bitte 'false' ein: ");
+		String anfrage = scn.next();
+		boolean repeat = anfrage.equals("true");
+		while(repeat) {		
+			System.out.println("Bitte gebe deinen Spielernamen ein: ");
+			String spieler = scn.next();
+			System.out.println("Gebe ein auf welche Schnecke du setzten möchtest (Petra/Uri/BatSnail/Adolf): ");
+			String schneckenName = scn.next();
+			System.out.println("Gebe nun deinen Wetteinsatz ein ('Komma' als Trennung nutzen): ");
 			float wettEinsatz = scn.nextFloat();
 			Wette NameSchnecke = new Wette(schneckenName, wettEinsatz, spieler);
 			Wetten.add(NameSchnecke);
 			System.out.println("Möchten sie weiter Wetten?");
-			System.out.print("Wann ja geben sie bitte true ein und wenn Nein geben sie bitte false ein: ");
-			Anfrage = scn.hasNextLine();
+			System.out.println("Wenn Ja, geben sie bitte 'true' ein und wenn Nein, geben sie bitte 'false' ein: ");
+			anfrage = scn.next();
 			
 		}
 		scn.close();
@@ -65,22 +66,24 @@ public class Wettbuero {
 
 	public void rennenDurchfuehren() {
 		getAktRennen().durchfuehren();
+		
 	}
 	
 	public void Ausgabe() {
-		
-		String siegerSchneckeString = Rennschnecke.class.getName();
-		System.out.println("Gewonnen hat: " + siegerSchneckeString  );
-		System.out.println("Es geb " + Wetten.size() + " Wetten.");
-		for(int i = 0; i <= Wetten.size(); i++) {
-			if(Wetten.get(i).getNameSchnecke() == siegerSchneckeString) {
+		Rennschnecke siegerSchneckeObjekt = aktRennen.ermittleGewinner();
+		String siegerSchneckeString = siegerSchneckeObjekt.getName();
+		System.out.println("Die Schnecke die den Sieg errungen hat ist: " + siegerSchneckeString  );
+		System.out.println("Es gab " + Wetten.size() + " Wetten.");
+		for(int i = 0; i < Wetten.size(); i++) {
+			if(Wetten.get(i).getNameSchnecke().equals(siegerSchneckeString)) {
 				float gewinn = Wetten.get(i).getEinsatz() * FAKTOR_WETTE;
 				String gewinner = Wetten.get(i).getNameSpieler();
-				System.out.println("Gewonnen hat: " + gewinner);
+				System.out.println("Bei den Wetten hat gewonnen: " + gewinner);
 				System.out.println("Er hat: " + gewinn + "€ gewonnen.");
 			}
-		System.out.println("Das Rennen ist beendet. Danke für's mitspielen.");	
+			
 		}
+		System.out.println("Das Rennen ist beendet. Danke für's mitspielen.");
 	}
 
 	
